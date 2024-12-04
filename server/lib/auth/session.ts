@@ -1,6 +1,6 @@
 import { sha256 } from '@oslojs/crypto/sha2';
 import { encodeBase32LowerCaseNoPadding, encodeHexLowerCase } from '@oslojs/encoding';
-import { Session, User } from '@prisma/client';
+import { type Session } from '@prisma/client';
 import { n_days } from '~/server/utils';
 import { prismaClient } from '../db';
 
