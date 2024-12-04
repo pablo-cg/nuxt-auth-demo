@@ -25,11 +25,5 @@ export default defineEventHandler(async (event) => {
   const session = await createSession(sessionToken, existingUser.id);
   setSessionTokenCookie(event, sessionToken, session.expiresAt);
 
-  return {
-    user: {
-      ...existingUser,
-      password: undefined,
-    },
-    session,
-  };
+  setResponseStatus(event, 200);
 });
