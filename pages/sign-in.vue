@@ -46,9 +46,8 @@ const passwordInputType = computed(() => (showPassword.value ? 'text' : 'passwor
 
 <template>
   <main class="container mx-auto relative">
-    <section class="my-4 absolute top-0 w-full flex justify-between items-center">
-      <h1 class="text-3xl font-bold">Sign In</h1>
-      <div class="flex gap-2">
+    <AppHeader title="Sign In">
+      <template #actions>
         <UButton
           :loading="isLoading"
           to="/"
@@ -61,8 +60,8 @@ const passwordInputType = computed(() => (showPassword.value ? 'text' : 'passwor
         >
           Sign Up
         </UButton>
-      </div>
-    </section>
+      </template>
+    </AppHeader>
     <section class="flex flex-col gap-5 justify-center items-center h-screen">
       <h2 class="text-xl font-bold">Sign In</h2>
       <UForm
