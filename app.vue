@@ -1,3 +1,10 @@
+<script lang="ts" setup>
+useHead({
+  titleTemplate(title) {
+    return title ? `${title} - Nuxt Auth` : 'Nuxt Auth';
+  },
+});
+</script>
 <template>
   <div>
     <NuxtLoadingIndicator />

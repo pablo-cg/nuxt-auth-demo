@@ -6,6 +6,10 @@ definePageMeta({
   middleware: ['only-guests'],
 });
 
+useHead({
+  title: 'Sign In',
+})
+
 const { toastSuccess, toastError } = useToaster();
 
 const isLoading = ref(false);

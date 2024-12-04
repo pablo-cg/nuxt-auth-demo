@@ -6,6 +6,10 @@ definePageMeta({
   middleware: ['protected'],
 });
 
+useHead({
+  title: 'Protected',
+})
+
 const isLoading = ref(false);
 
 async function signOut() {
