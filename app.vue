@@ -3,6 +3,7 @@
     <NuxtLoadingIndicator />
     <NuxtRouteAnnouncer />
     <NuxtPage />
+    <AppFooter />
     <UNotifications />
   </div>
 </template>
