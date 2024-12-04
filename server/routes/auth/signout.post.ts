@@ -8,4 +8,6 @@ export default defineEventHandler(async (event) => {
 
   await deleteSession(event.context.session.id);
   deleteSessionTokenCookie(event);
+
+  setResponseStatus(event, 200);
 });
