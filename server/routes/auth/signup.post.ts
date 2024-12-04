@@ -21,15 +21,16 @@ export default defineEventHandler(async (event) => {
       select: { id: true, email: true, name: true },
     });
 
+    setResponseStatus(event, 201);
+
     return user;
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      if (error.code === 'P2002') {
-        throw createError({ statusCode: 409, statusMessage: 'User already exists' });
+      if (error.code === 'SQLITE_CONSTRAINT') {
+        throw createError({ statusCode: 409, statusMessage: 'Email already exists' });
       }
     }
 
-    console.error(error);
     throw createError({ statusCode: 500, statusMessage: 'Internal server error' });
   }
 });
