@@ -4,7 +4,5 @@ export default defineNuxtRouteMiddleware(async () => {
 
   const data = await requestFetch('/auth/user');
 
-  if (data) {
-    user.value = data;
-  }
+  user.value = data ?? null;
 });
