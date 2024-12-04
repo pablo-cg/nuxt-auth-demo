@@ -21,24 +21,29 @@ async function signOut() {
   } catch (error) {
     console.log(error);
   } finally {
-    isLoading.value = false
+    isLoading.value = false;
   }
 }
 </script>
 
 <template>
   <main class="container mx-auto relative">
-    <section class="my-4 absolute top-0 w-full flex justify-between items-center">
-      <h1 class="text-3xl font-bold">Protected</h1>
-      <div class="flex gap-2">
-        <UButton :loading="isLoading" to="/">Home</UButton>
-      </div>
-    </section>
-    <section class="flex flex-col gap-3 justify-center items-center h-screen">
+    <AppHeader title="Protected">
+      <template #actions>
+        <UButton
+          :loading="isLoading"
+          to="/"
+          >Home</UButton
+        >
+      </template>
+    </AppHeader>
+    <section class="flex flex-col gap-5 justify-center items-center h-screen">
       <p class="text-xl">You are logged in</p>
-      <p>
+
+      <UCard>
         <pre>{{ user }}</pre>
-      </p>
+      </UCard>
+
       <UButton
         size="lg"
         @click="signOut"
