@@ -1,4 +1,31 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+definePageMeta({
+  middleware: ['only-guests'],
+});
+
+const { toastSuccess, toastError } = useToaster();
+
+const form = reactive({
+  email: '',
+  password: '',
+  name: '',
+});
+
+async function signUp() {
+  try {
+    await $fetch('/auth/signup', {
+      method: 'POST',
+      body: form,
+    });
+
+    toastSuccess('You can now sign in');
+
+    await navigateTo('/sign-in');
+  } catch (error: any) {
+    toastError(error?.statusMessage);
+  }
+}
+</script>
 
 <template>
   <main class="container mx-auto relative">
@@ -11,10 +38,25 @@
     </section>
     <section class="flex flex-col gap-5 justify-center items-center h-screen">
       <h2 class="text-xl font-bold">Sign Up</h2>
-      <form class="flex flex-col gap-3 w-1/3">
-        <UInput type="email" placeholder="Email" />
-        <UInput type="password" placeholder="Password" />
-        <UInput type="text" placeholder="Name" />
+      <form
+        @submit.prevent="signUp"
+        class="flex flex-col gap-3 w-1/3"
+      >
+        <UInput
+          type="text"
+          placeholder="Name"
+          v-model="form.name"
+        />
+        <UInput
+          type="email"
+          placeholder="Email"
+          v-model="form.email"
+        />
+        <UInput
+          type="password"
+          placeholder="Password"
+          v-model="form.password"
+        />
         <UButton type="submit">Sign Up</UButton>
       </form>
     </section>
