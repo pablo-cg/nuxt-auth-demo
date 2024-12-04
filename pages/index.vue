@@ -2,7 +2,10 @@
 const user = useUser();
 const { toastInfo } = useToaster();
 
+const isLoading = ref(false);
+
 async function signOut() {
+  isLoading.value = true;
   try {
     await $fetch('/auth/signout', {
       method: 'POST',
@@ -13,6 +16,8 @@ async function signOut() {
     reloadNuxtApp();
   } catch (error) {
     console.log(error);
+  } finally {
+    isLoading.value = false;
   }
 }
 </script>
@@ -25,6 +30,7 @@ async function signOut() {
         <UButton
           v-if="user"
           @click="signOut"
+          :loading="isLoading"
         >
           Sign Out
         </UButton>
@@ -49,6 +55,7 @@ async function signOut() {
         v-if="user"
         size="xl"
         to="/protected"
+        :loading="isLoading"
       >
         Protected Page
       </UButton>

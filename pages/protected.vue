@@ -6,7 +6,10 @@ definePageMeta({
   middleware: ['protected'],
 });
 
+const isLoading = ref(false);
+
 async function signOut() {
+  isLoading.value = true;
   try {
     await $fetch('/auth/signout', {
       method: 'POST',
@@ -17,6 +20,8 @@ async function signOut() {
     await navigateTo('/');
   } catch (error) {
     console.log(error);
+  } finally {
+    isLoading.value = false
   }
 }
 </script>
@@ -26,7 +31,7 @@ async function signOut() {
     <section class="my-4 absolute top-0 w-full flex justify-between items-center">
       <h1 class="text-3xl font-bold">Protected</h1>
       <div class="flex gap-2">
-        <UButton to="/">Home</UButton>
+        <UButton :loading="isLoading" to="/">Home</UButton>
       </div>
     </section>
     <section class="flex flex-col gap-3 justify-center items-center h-screen">
@@ -37,6 +42,7 @@ async function signOut() {
       <UButton
         size="lg"
         @click="signOut"
+        :loading="isLoading"
       >
         Sign Out
       </UButton>
