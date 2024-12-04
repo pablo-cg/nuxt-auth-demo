@@ -1,6 +1,6 @@
 # Nuxt Auth Demo
 
-Demo de autenticación en Nuxt con implementación de autenticación y aesiones utilizando [Lucia Auth](https://lucia-auth.com) como recurso de aprendizaje
+Demo de autenticación en Nuxt con implementación de autenticación y sesiones utilizando [Lucia Auth](https://lucia-auth.com) como recurso de aprendizaje
 
 - Metaframework: [Nuxt](https://nuxt.com)
 - UI: [Nuxt UI](https://ui.nuxt.com)
